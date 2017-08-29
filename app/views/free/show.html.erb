@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+       <style>
+           .total {
+               margin:30px;
+           }
+       </style>
+    </head>
+    <body>
+        <div class="total">
+            <h1 style="font-weight:bold; color:#795548;"><%=@every.id%>번 글입니다.</h1>
+            <hr>
+            <h3>제목 <a style="font-size:20px"><%=@every.title%></a></h3>
+            <hr>
+            <h3>내용</h3>
+            <hr>
+            <%=@every.content%>
+            <hr>
+            <form action="/free/show/<%=@every.id%>/review/create" method="post">
+            <h3 style="font-size:20px">댓글 <input type="text" name="review">
+            <button type="submit" class="btn btn-warning">제출</button></h3>
+            </form>
+            <br>
+            <%@everysemo.each do |w|%>
+            <p>-> <%=w.review%> <a href="/free/show/<%=@every.id%>/review/delete/<%=w.id%>" data-method="post">[X]</a></p>
+            <%end%>
+            <hr>
+            <a href="/"><button type="submit" class="btn btn-primary">목록으로 가기</button></a>
+        </div>
+    </body>
+</html>

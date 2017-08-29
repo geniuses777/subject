@@ -1,0 +1,157 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <style>
+            img {
+                height:30px;
+                width:30px;
+            }
+            .navbar{
+              background-color:pink;
+              margin-top:10px;
+              margin-left:10px;
+              margin-right:10px;
+              height:100px;
+              font-weight:bold;
+            }
+            .geshipan{
+              margin-top:30px;
+              margin-left:50px;
+            }
+            .freedom{
+              width:550px;
+              height:50px;
+            }
+            .question{
+              margin-left:30px;
+            }
+            .login{
+              margin-left:500px;
+              margin-top:20px;
+              font-size:20px;
+            }
+            .travel{
+              margin-top:100px;
+              margin-left:10px;
+              margin-right:10px;
+              margin-bottom:0px;
+              background-color:#26c6da;
+              width:1200px;
+              height:300px;
+            }
+            .picture>img{
+              float:left;
+              margin:20px 80px;
+              height:250px;
+              width:250px;
+              border-radius:30%;
+            }
+            .picture{
+              text-align:center;
+              float:left;
+     
+            }
+            
+            
+        </style>
+    </head>
+    <body>
+      <nav class="navbar">
+        <div class="row">
+          <a class="navbar-brand"style="font-size:50px; color:#795548;">진주 커뮤니티</a>
+           <div class="login">
+              <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%=current_user.email%>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="/users/sign_out">로그아웃하기</a>
+              </div>
+            </div>
+        </div>
+      </nav>
+      <div class="geshipan">
+        <div class="row">
+          <div class="freedom" col-md-6>
+            <h1 style="font-size:30px">자유게시판</h1>
+            <br>
+            <table class="table">
+              <thead class="thead-default">
+                <tr>
+                  <th>번호</th>
+                  <th>제목</th>
+                  <th>시간</th>
+                  <th>수정하기</th>
+                  <th>삭제하기</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%@everypost.each do |p|%>
+                <tr>
+                  <th><%=p.id%></th>
+                  <td><a href="/free/show/<%=p.id%>"><%=p.title%></a></td>
+                  <td><%=p.updated_at%></td>
+                  <td><a href="/free/update/<%=p.id%>" data-confirm="진짜로 수정하시겠습니까?"><img src="http://mblogthumb3.phinf.naver.net/MjAxNjExMzBfMTg1/MDAxNDgwNDg5ODU0NjM4.4tqSHpw21CduFEmcSTbh5zuIBOsASnWF36jaPENJFzUg.MxXZhXB0D0EUAkzjWucdk9pIUMeYRqFJuCukiRlLsk8g.PNG.l_nine/Pencil_icon.png?type=w800"></a></td>
+                  <td><a href="/free/delete/<%=p.id%>" data-method="post" data-confirm="진짜로 삭제하시겠습니까?"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaHJMio96X9-anmZyAstD9yqmkKZnomRhIZvnEuvHvCE4y50PC"></a></td>
+                </tr>
+                <%end%>
+              </tbody>
+            </table>
+            <form action="/free/create">
+            <button type="submit" class="btn btn-primary">새글 쓰러가기</button>
+            </form>
+          </div>
+          <div class="question" col-md-6>
+            <h1 style="font-size:30px">질문게시판</h1>
+            <br>
+            <table class="table">
+              <thead class="thead-default">
+                <tr>
+                  <th>번호</th>
+                  <th>질문</th>
+                  <th>시간</th>
+                  <th>수정하기</th>
+                  <th>삭제하기</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%@everyquest.each do |q|%>
+                <tr>
+                  <th><%=q.id%></th>
+                  <td><a href="/question/show/<%=q.id%>"><%=q.quest%></a></td>
+                  <td><%=q.updated_at%></td>
+                  <td><a href="/question/update/<%=q.id%>" data-confirm="진짜로 수정하시겠습니까?"><img src="http://mblogthumb3.phinf.naver.net/MjAxNjExMzBfMTg1/MDAxNDgwNDg5ODU0NjM4.4tqSHpw21CduFEmcSTbh5zuIBOsASnWF36jaPENJFzUg.MxXZhXB0D0EUAkzjWucdk9pIUMeYRqFJuCukiRlLsk8g.PNG.l_nine/Pencil_icon.png?type=w800"></a></td>
+                  <td><a href="/question/delete/<%=q.id%>" data-method="post" data-confirm="진짜로 삭제하시겠습니까?"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaHJMio96X9-anmZyAstD9yqmkKZnomRhIZvnEuvHvCE4y50PC"></a></td>
+                </tr>
+                <%end%>
+              </tbody>
+            </table>
+            <a href="/question/create"><button type="button" class="btn btn-success">질문쓰러가기</button></a>
+          </div>
+        </div>
+      </div>
+      <div class="travel">
+        <h1>진주 명소 TOP3</h1>
+        <div class="picture">
+          <img src="http://imgnews.naver.com/image/082/2013/08/03/20130802000140_0_59_20130805075459.jpg">
+          <div>01.진주성</div>
+        </div>
+        <div class="picture">
+          <img src="http://imgnews.naver.com/image/082/2015/04/17/20150417000086_0_99_20150420132042.jpg">
+          <div>02. 남강 유등축제</div>
+        </div>
+        <div class="picture">
+          <img src="http://blogfiles5.naver.net/20140214_291/jjkooki_13923728967825CoSX_JPEG/DSC03532.JPG">
+          <div>03.진양호</div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="content">
+          <h2><진주명소와 관련된 페이지></h2><br>
+          02.남강 유등축제 => http://korean.visitkorea.or.kr/kor/bz15/where/festival/festival.jsp?cid=506926
+        </div>
+      </div>
+    </body>
+</html>

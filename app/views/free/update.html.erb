@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <style>
+            .total {
+                margin:30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="total">
+            <h1 style="font-weight:bold; color:#8d6e63;"><%=@every.id%>번 글을 수정할 페이지입니다.</h1>
+            <br>
+            <form action="/free/update_it/<%=@every.id%>" method="post">
+                <hr>
+                <h3>제목 <input type="text" name="title" value="<%=@every.title%>"></h3>
+                <hr>
+                <div class="form-group">
+                    <label for="exampleTextarea" style="font-size:25px">내용</label>
+                    <textarea class="form-control" id="exampleTextarea" rows="3" name="content"><%=@every.content%></textarea>
+                 </div>
+                <button type="submit" class="btn btn-success">제출</button>
+            </form>
+        </div>
+    </body>
+</html>

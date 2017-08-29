@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+       <style>
+           .navbar{
+               margin:20px;
+           }
+           .content{
+               margin-left:50px;
+               margin-right:50px;
+               margin-top:20px;
+               height:1000px;
+           }
+       </style>
+    </head>
+    <body>
+        <nav class="navbar">
+          <a class="navbar-brand"><h1 style="font-weight:bold; color:#4caf50;"><%=@star.id%>번 질문입니다.</h1></a>
+        </nav>
+        
+        <div class="content">
+            <h3>질문</h3>
+            <hr>
+            <p><%=@star.quest%></p>
+            <hr>
+            <form action="/question/show/<%=@star.id%>/answer/create" method="post">
+            <h3 style="font-size:20px">댓글 <input type="text" name="answer"> <button type="submit" class="btn btn-warning">제출</button></h3>
+            </form>
+            <br>
+            <%@everynemo.each do |t|%>
+            <p> -> <%=t.answer%> <a href="/question/show/<%=@star.id%>/answer/delete/<%=t.id%>" data-method="post">[X]</a></p>
+            <%end%>
+            <hr>
+            <a href="/"><button type="button" class="btn btn-info">목록으로 가기</button></a>
+        </div>
+    </body>
+</html>
